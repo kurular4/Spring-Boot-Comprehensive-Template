@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
 
         User user = modelMapper.map(userDTO, User.class);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()))
-                .setRoles(Arrays.asList(Role.USER))
+                .setRoles(Collections.singletonList(Role.USER))
                 .setId(UUID.randomUUID().toString());
 
         if (userRepository.save(user) != null) {

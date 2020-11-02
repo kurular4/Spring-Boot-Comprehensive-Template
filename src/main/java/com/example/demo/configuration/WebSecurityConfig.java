@@ -1,6 +1,5 @@
 package com.example.demo.configuration;
 
-import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.model.Role;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
     UserService userService;
 
-    @Bean (name = BeanIds.AUTHENTICATION_MANAGER)
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -47,15 +43,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/actuator/**").hasAuthority(Role.ADMIN.toString())
                 .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.DELETE,"/user/remove").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString())
+                .antMatchers(HttpMethod.DELETE, "/user/remove").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString())
                 .antMatchers(HttpMethod.PUT, "/user/create").permitAll()
                 .antMatchers(HttpMethod.PUT, "/document/create", "/document/update").hasAuthority(Role.ADMIN.toString())
                 .antMatchers(HttpMethod.DELETE, "/document/delete").hasAuthority(Role.ADMIN.toString())
                 .antMatchers(HttpMethod.POST, "/signin").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Role.ADMIN.toString())
                 .anyRequest().authenticated()
-                .and()
-                .apply(new JwtConfig(jwtTokenProvider));
+                ;//.and();
+//                .addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

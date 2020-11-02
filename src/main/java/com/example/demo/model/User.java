@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt", "roles", "enabled",
-        "authorities", "credentialsNonExpired", "accountNonLocked", "accountNonExpired"})
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt", "roles",
+        "enabled", "authorities", "credentialsNonExpired",
+        "accountNonLocked", "accountNonExpired", "password"})
 @Data
 @Accessors(chain = true)
 public class User extends Base implements UserDetails, Serializable {
