@@ -20,4 +20,5 @@ public class PublicController {
     public GenericResponse login(@Valid @RequestBody UserLoginDTO userLoginDTO) {
         return authenticationService.login(userLoginDTO);
     }
+
 }
