@@ -10,5 +10,5 @@ Comprehensive Template for Spring Boot with JWT
 <li> Custom exception handler </li>
 <li> Mail service </li>
 
-TODO
+<h4>TODO</h4>
 <li> Need some refinement for authorization/authentication part. </li>
