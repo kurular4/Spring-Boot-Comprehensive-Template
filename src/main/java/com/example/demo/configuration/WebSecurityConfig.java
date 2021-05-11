@@ -49,10 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/document/delete").hasAuthority(Role.ADMIN.toString())
                 .antMatchers(HttpMethod.POST, "/signin").permitAll()
                 .antMatchers("/admin/**").hasAuthority(Role.ADMIN.toString())
-                .anyRequest().authenticated()
-                ;//.and();
-//                .addFilterBefore(new JwtAuthenticationFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().authenticated();
     }
 
     @Override
