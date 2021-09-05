@@ -3,8 +3,8 @@ package com.example.demo.jwt;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,17 +23,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Component
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     @Value("${security.jwt.token.secret-key}")
     private String secretKey;
-    
-    @Autowired
-    ModelMapper modelMapper;
 
-    @Autowired
-    UserService userService;
+    private final ModelMapper modelMapper;
+    private final UserService userService;
 
     private final Set<String> skipUrls = new HashSet<>(Collections.singletonList("/user/create"));
     private final AntPathMatcher pathMatcher = new AntPathMatcher();

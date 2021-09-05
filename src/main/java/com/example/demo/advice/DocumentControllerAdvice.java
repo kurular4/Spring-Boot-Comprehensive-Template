@@ -4,15 +4,14 @@ import com.example.demo.constant.ErrorMessageCodeConstant;
 import com.example.demo.dto.GenericResponse;
 import com.example.demo.exception.document.DocumentNotFoundException;
 import com.example.demo.service.GenericResponseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@RequiredArgsConstructor
 @RestControllerAdvice
 public class DocumentControllerAdvice {
-
-    @Autowired
-    GenericResponseService genericResponseService;
+    private final GenericResponseService genericResponseService;
 
     @ExceptionHandler(DocumentNotFoundException.class)
     public GenericResponse handleDocumentNotFound(DocumentNotFoundException exception) {

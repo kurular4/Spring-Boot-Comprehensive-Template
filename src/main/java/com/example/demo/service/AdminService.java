@@ -4,26 +4,19 @@ import com.example.demo.dto.GenericResponse;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @Service
 public class AdminService {
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    ModelMapper modelMapper;
-
-    @Autowired
-    GenericResponseService genericResponseService;
+    private final UserRepository userRepository;
+    private final UserService userService;
+    private final ModelMapper modelMapper;
+    private final GenericResponseService genericResponseService;
 
     public GenericResponse allUsers() {
         return genericResponseService.createResponseNoError(userRepository.findAll());

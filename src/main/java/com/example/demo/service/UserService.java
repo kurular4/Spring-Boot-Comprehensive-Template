@@ -10,9 +10,9 @@ import com.example.demo.model.Document;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,21 +22,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Log4j2
 @Service
 public class UserService implements UserDetailsService {
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    GenericResponseService genericResponseService;
-
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    ModelMapper modelMapper;
+    private final UserRepository userRepository;
+    private final GenericResponseService genericResponseService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ModelMapper modelMapper;
 
     public GenericResponse create(UserDTO userDTO) {
         Objects.requireNonNull(userDTO);

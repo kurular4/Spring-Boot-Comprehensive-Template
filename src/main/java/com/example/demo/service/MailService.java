@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Mail;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,10 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+@RequiredArgsConstructor
 @Service
 public class MailService {
-
-    @Autowired
-    JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     public void sendEmail(Mail mail) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();

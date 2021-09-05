@@ -4,19 +4,16 @@ import com.example.demo.dto.GenericResponse;
 import com.example.demo.exception.document.DocumentNotFoundException;
 import com.example.demo.model.Document;
 import com.example.demo.repository.DocumentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@RequiredArgsConstructor
 @Service
 public class DocumentService {
-
-    @Autowired
-    DocumentRepository documentRepository;
-
-    @Autowired
-    GenericResponseService genericResponseService;
+    private final DocumentRepository documentRepository;
+    private final GenericResponseService genericResponseService;
 
     public GenericResponse create(Document document) {
         Objects.requireNonNull(document);

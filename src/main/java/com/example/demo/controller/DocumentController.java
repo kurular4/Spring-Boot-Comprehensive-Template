@@ -4,18 +4,17 @@ import com.example.demo.dto.GenericResponse;
 import com.example.demo.model.Document;
 import com.example.demo.model.User;
 import com.example.demo.service.DocumentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("document")
 public class DocumentController {
-
-    @Autowired
-    DocumentService documentService;
+    private final DocumentService documentService;
 
     @PutMapping(value = "create", consumes = "application/json")
     public GenericResponse create(@AuthenticationPrincipal User user, @Valid @RequestBody Document document) {
