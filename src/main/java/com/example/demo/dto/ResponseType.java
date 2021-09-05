@@ -1,10 +1,8 @@
 package com.example.demo.dto;
 
 public enum ResponseType {
-
     ERROR("ERROR"),
-    SUCCESS("SUCCESS")
-    ;
+    SUCCESS("SUCCESS");
 
     private final String text;
 

@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 
     public GenericResponse update(String id, UserDTO userDTO) {
         Objects.requireNonNull(userDTO);
-
+        
         User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
         user.setUsername(userDTO.getUsername())
                 .setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()))
